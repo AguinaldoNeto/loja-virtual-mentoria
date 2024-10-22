@@ -20,10 +20,13 @@ public abstract class Pessoa implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_tb_pessoa")
     private Long id;
 
+    @Column(nullable = false)
     private String nome;
 
+    @Column(nullable = false)
     private String email;
 
+    @Column(nullable = false)
     private String telefone;
 
     //SE APAGAR UMA PESSOA, APAGA TODOS OS ENDEREÇOS, ISSO EM CASCATA E SÓ CARREGA OS ENDEREÇOS SE A GENTE FIZER A CHAMADA GET

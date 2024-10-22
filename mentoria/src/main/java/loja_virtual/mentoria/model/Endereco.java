@@ -19,19 +19,29 @@ public class Endereco implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_tb_endereco")
     private Long id;
 
+    @Column(nullable = false)
     private String ruaLogra;
 
+    @Column(nullable = false)
     private String cep;
 
+    @Column(nullable = false)
     private String numero;
 
     private String complemento;
 
+    @Column(nullable = false)
     private String bairro;
 
+    @Column(nullable = false)
     private String uf;
 
+    @Column(nullable = false)
     private String cidade;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private TipoEndereco tipoEndereco;
 
     @ManyToOne(targetEntity = Pessoa.class)
     @JoinColumn(
@@ -39,9 +49,6 @@ public class Endereco implements Serializable {
             nullable = false,
             foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "pessoa_fk"))
     private Pessoa pessoa;
-
-    @Enumerated(EnumType.STRING)
-    private TipoEndereco tipoEndereco;
 
 
     public Long getId() {
@@ -108,20 +115,20 @@ public class Endereco implements Serializable {
         this.cidade = cidade;
     }
 
-    public Pessoa getPessoa() {
-        return pessoa;
-    }
-
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
-    }
-
     public TipoEndereco getTipoEndereco() {
         return tipoEndereco;
     }
 
     public void setTipoEndereco(TipoEndereco tipoEndereco) {
         this.tipoEndereco = tipoEndereco;
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 
     @Override
